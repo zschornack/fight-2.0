@@ -1,4 +1,3 @@
-
 const defaultCharacter = {
     name: '',
     life: 1,
@@ -80,28 +79,30 @@ const stage = {
 
     }, 
     update() {
-        // fighter 1 lifebar
+        
         let f1pct
         let f2pct
-        //let bar1 = this.fighter1El.querySelector('.bar')
-        //let bar2 = this.fighter2El.querySelector('.bar')
+        let bar1 = this.fighter1El.querySelector('.bar')
+        let bar2 = this.fighter2El.querySelector('.bar')
+
         if (this.fighter1.life <= 0) {
             f1pct = 0
         } else {
             f1pct = (this.fighter1.life / this.fighter1.maxLife) * 100
+            
         }
-        this.fighter1El.querySelector('.bar').style.width = f1pct + '%'
+        bar1.style.width = `calc(${f1pct}% - 10px)`
         
-
-        // fighter 2 lifebar
         if (this.fighter2.life <= 0){
             f2pct = 0
         } else {
             f2pct = (this.fighter2.life / this.fighter2.maxLife) * 100
         }
-        this.fighter2El.querySelector('.bar').style.width = f2pct + '%'
+        bar2.style.width = `calc(${f2pct}% - 10px)`
 
-        // fighter text stats
+        bar1.style.backgroundColor = getColor(Math.floor(f1pct))
+        bar2.style.backgroundColor = getColor(Math.floor(f2pct))
+        
         let life1 = this.fighter1.life
         let life2 = this.fighter2.life
         if (life1 <= 0) {
@@ -111,10 +112,15 @@ const stage = {
             life2 = 0
         }
         
+        let stats1
+
         this.fighter1El.querySelector('#charname').innerHTML = this.fighter1.name
         this.fighter1El.querySelector('.stats').innerHTML = life1.toFixed(2)
         this.fighter2El.querySelector('.name').innerHTML = this.fighter2.name
         this.fighter2El.querySelector('.stats').innerHTML = life2.toFixed(2)
+
+
+
 
         if (this.fighter1.life <= 0) {
             defeat()
@@ -218,7 +224,13 @@ function victory(fighter) {
         document.querySelector('.victorycontainer').style.display='none'
         document.querySelector('#blurr').style.display='none'
         stage.start(char, monst, charEl, monstEl)
-        console.log(monst)
-        console.log(char)
     })
+}
+
+function getColor(pct) {
+    
+    let red = Math.min(255, Math.max(0, 255 - pct * 2.55))
+    let green = Math.min(255, Math.max(0, pct * 2.55 ))
+    
+    return `rgb(${red},${green},0)`
 }
