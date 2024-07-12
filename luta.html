@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projeto luta 2.0</title>
+    <link rel="stylesheet" href="luta.css">
+</head>
+<body>
+    <div id="blurr" class="newplayer" class="gameover"></div>
+    
+    <div class="gameovercontainer">
+        <p id="gameover" class="gameover">GAME OVER</p>
+        <a href="luta.html" id="newgamelink"><button id="newgamebutton" class="button">NEW GAME</button></a>
+    </div>
+
+    <div class="victorycontainer">
+        <p id="victory" class="victory">VICTORY</p>
+        <button id="victorybutton" class="button">NEXT OPPONENT</button>
+    </div>
+
+    <img class="bgimage" src="img/wallpaper 1.jpg">
+    
+    <div class="fightcontainer">
+        <div class="fightarea">
+            <div id="newchar" class="newplayer">
+                <form action="">
+                    <p>Character name:</p>
+                    <input type="text" id="inputname" class="inputname" minlength="3" maxlength="15" autocomplete="off"></br>
+                    <input class='button' id="newcharbutton" type="submit" value="Start">
+                </form>
+            </div>
+            
+            <div id="char" class="fighters">
+                <div class="lifebar">
+                    <div class="bar"></div>
+                </div>
+                <p id="charname" class="name"></p>
+                <div class="statsline">
+                    <p>Hp</p>
+                    <p class="stats">100</p>
+                </div>
+                <div id="bt1parent">
+                    <button id="attackbutton" class="button">Atacar</button>
+                </div>
+            </div>
+
+            <div id="monster" class="fighters">
+                <div class="lifebar">
+                    <div class="bar"></div>
+                </div>
+                <p class="name">--</p>
+                <div class="statsline">
+                    <p >Hp</p>
+                    <p class="stats">100</p>
+                </div>
+                <div id="bt2parent">
+                    <button id="attackbutton" class="button">Atacar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="logcontainer">
+        <ul id='log' class="log"></ul>
+    </div>
+    
+    <script src="functions.js"></script>
+    <script src="script.js"></script>
+
+</html>

@@ -1,0 +1,172 @@
+* {
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: white;
+    margin:0px;
+}
+
+.bgimage {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.85;
+}
+
+.name {
+    font-size: 25px;
+    padding: 5px 5px;
+    margin: 0px 0px 0px 0px;
+    text-shadow: 1px 1px 7px black;
+}
+
+#charname {
+    font-weight: bold;
+}
+
+.statsline > p {
+    font-size: 20px;
+    padding: 0px 0px 10px 5px;
+    margin: 0px;
+    text-shadow: 1px 1px 7px black;
+}
+
+.statsline {
+    display: flex;
+}
+
+.fightcontainer {
+    padding: 50px 0px 50px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.fightarea {
+    width: 80vw;
+    max-width: 800px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fighters {
+    width: 45%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+#char {
+    align-items: baseline;
+}
+
+#monster {
+    align-items: end;
+}
+
+.lifebar {
+    width: 300px;
+    height: 25px;
+    background-color: rgb(224, 224, 224);
+}
+
+.bar {
+    background-color: rgb(0, 255, 13);
+    height: 25px;
+}
+
+.button {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+#logcontainer {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.log {
+    position: absolute;
+    margin:0px;
+    padding: 0px;
+    height: 50vh;
+    width: 80vw;
+    max-width: 800px;
+    overflow-y: scroll;
+    background-color: #ffffff73;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#newchar {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index:3;
+}
+
+#newcharbutton {
+    margin: 10px 5px 10px 5px;
+    padding: 0px;
+}
+
+#blurr {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity:0.95;
+    z-index: 2;
+}
+
+#gameover, #victory {
+    margin: 0px;
+    padding: 0px;
+    font-size: 10em;
+    z-index: 3;
+    text-align: center;
+}
+
+#gameover {
+    color: red;
+}
+
+.gameovercontainer, .victorycontainer {
+    position: absolute;
+    display: none;
+    height: 100%;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+#newgamebutton, #victorybutton {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    z-index: 3;
+    height: 50px;
+    width: 150px;
+}
+
+#newgamelink {
+    z-index: 3;
+}
+
+#victory {
+    color: rgb(51, 255, 0);
+}
