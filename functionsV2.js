@@ -12,7 +12,7 @@ function createKnight(name) {
         name,
         life: 100,
         maxLife: 100,
-        attack: 10,
+        attack: 12,
         defense: 8,
     }
 }
@@ -45,7 +45,7 @@ function createBigMonster() {
         name: 'Big Monster',
         life: 120,
         maxLife: 120,
-        attack: 16,
+        attack: 14,
         defense: 6,
     }
 }
@@ -65,21 +65,14 @@ const stage = {
         this.update()
         
         let btn1 = fighter1El.querySelector('#attackbutton')
-        let btn2 = fighter2El.querySelector('#attackbutton')
         let bt1parent = document.querySelector('#bt1parent')
-        let bt2parent = document.querySelector('#bt2parent')
         let newbtn1 = btn1.cloneNode(true)
-        let newbtn2 = btn2.cloneNode(true)
         bt1parent.replaceChild(newbtn1, btn1)
-        bt2parent.replaceChild(newbtn2, btn2)
-
-
-        this.fighter2El.querySelector('#attackbutton').addEventListener('click', () => this.doAttack(this.fighter2, this.fighter1))
+        
         this.fighter1El.querySelector('#attackbutton').addEventListener('click', () => this.doAttack(this.fighter1, this.fighter2))
 
     }, 
     update() {
-        
         let f1pct
         let f2pct
         let bar1 = this.fighter1El.querySelector('.bar')
@@ -117,37 +110,62 @@ const stage = {
         this.fighter2El.querySelector('.stats').innerHTML = life2.toFixed(2)
 
         if (this.fighter1.life <= 0) {
-            defeat()
+            setTimeout(()=>{
+                defeat()
+            }, 500)
         }
         
         if (this.fighter2.life <= 0) {
-            victory(this.fighter1)
+            setTimeout(() => {
+                victory(this.fighter1)
+            }, 500)
         }
 
     },
-    doAttack(attacking, attacked) {          
-        let defenseFactor = (Math.random() * 2).toFixed(2)
-        let attackFactor = (Math.random() * 2).toFixed(2)
-        let realDefense = attacked.defense * defenseFactor
-        let realAttack = attacking.attack * attackFactor
-        let log = document.getElementById('log')
+    doAttack(char, monster) {          
+        let monsterDefense = monster.defense * (Math.random() * 2).toFixed(2)
+        let monsterAttack = monster.attack * (Math.random() * 2).toFixed(2)
+        let charDefense = char.defense * (Math.random() * 2).toFixed(2)
+        let charAttack = char.attack * (Math.random() * 2).toFixed(2)
+        console.log('monster defense ' + monsterDefense)
+        console.log('monster Attack ' + monsterAttack)
+        console.log('char Defense ' + charDefense)
+        console.log('char Attack ' + charAttack)
 
-        if (realDefense >= realAttack) {
-            let text = document.createTextNode(`${attacked.name} defendeu`)
-            const node = document.createElement('li')
+        let log = document.getElementById('log')
+        const node = document.createElement('li')
+
+        if (monsterDefense >= charAttack) {
+            let text = document.createTextNode(`${monster.name} defendeu`)
             node.appendChild(text)
             log.appendChild(node)
 
         } else {
-            let dano = realAttack - realDefense
-            attacked.life -= dano
-            let text = document.createTextNode(`${attacking.name} causou ${dano.toFixed(2)} de dano.`)
-            const node = document.createElement('li')
+            let dano = charAttack - monsterDefense
+            monster.life -= dano
+            let text = document.createTextNode(`${char.name} causou ${dano.toFixed(2)} de dano.`)
             node.appendChild(text)
             log.appendChild(node)
         }
-
         this.update()
+
+        setTimeout(() => {
+            const node = document.createElement('li')
+            if (charDefense >= monsterAttack) {
+                let text = document.createTextNode(`${char.name} defendeu`)
+                node.appendChild(text)
+                log.appendChild(node)
+    
+            } else {
+                let dano = monsterAttack - charDefense
+                char.life -= dano
+                let text = document.createTextNode(`${monster.name} causou ${dano.toFixed(2)} de dano.`)
+                node.appendChild(text)
+                log.appendChild(node)
+            }
+            this.update()
+        }, 500)
+        
     }
     
 }

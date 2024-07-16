@@ -117,11 +117,15 @@ const stage = {
         this.fighter2El.querySelector('.stats').innerHTML = life2.toFixed(2)
 
         if (this.fighter1.life <= 0) {
-            defeat()
+            setTimeout(()=>{
+                defeat()
+            }, 500)
         }
         
         if (this.fighter2.life <= 0) {
-            victory(this.fighter1)
+            setTimeout(() => {
+                victory(this.fighter1)
+            }, 500)
         }
 
     },
