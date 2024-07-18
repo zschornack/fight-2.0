@@ -4,6 +4,7 @@ const defaultCharacter = {
     maxLife: 1,
     attack: 0,
     defense: 0,
+    bg: document.querySelector('.bgimage')
 }
 
 function createKnight(name) {
@@ -151,6 +152,7 @@ const stage = {
 
         setTimeout(() => {
             const node = document.createElement('li')
+            if (monster.life > 0) {
             if (charDefense >= monsterAttack) {
                 let text = document.createTextNode(`${char.name} defendeu`)
                 node.appendChild(text)
@@ -162,7 +164,7 @@ const stage = {
                 let text = document.createTextNode(`${monster.name} causou ${dano.toFixed(2)} de dano.`)
                 node.appendChild(text)
                 log.appendChild(node)
-            }
+            }}
             this.update()
         }, 500)
         
