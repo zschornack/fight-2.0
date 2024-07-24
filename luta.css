@@ -7,9 +7,14 @@ body {
 
 .bgimage {
     position: absolute;
+    background-image: url(img/wallpaper-1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100vw;
     height: 100vh;
     opacity: 0.85;
+    z-index: -1;
 }
 
 .name {
@@ -102,19 +107,20 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     background-size: 106%;
-    border: 3px solid black;
+    border: hidden;
     box-sizing: border-box;
+    border-radius: 5px;
 }
 
 #charicon {
-    background-color: #1b3069;
+    background-color: #000000;
     background-size: 100%;
 }
 
 #monsicon {
     background-image: url(img/small-monster.png);
     height: 100px;
-    background-color: #a70000;
+    background-color: #000000;
 }
 
 .button {

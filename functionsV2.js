@@ -27,7 +27,8 @@ function createSorcerer() {
         maxLife: 50,
         attack: 14,
         defense: 5,
-        icon: 'url(img/sorcerer.png)'
+        icon: 'url(img/sorcerer.png)',
+        wallpaper: 'url(img/wallpaper-2.jpg)'
     }
 }
 
@@ -39,7 +40,8 @@ function createLittleMonster() {
         maxLife: 40,
         attack: 8,
         defense: 4,
-        icon: 'url(img/small-monster.png)'
+        icon: 'url(img/small-monster.png)',
+        wallpaper: 'url(img/wallpaper-1.jpg)'
     }
 }
 
@@ -51,7 +53,8 @@ function createBigMonster() {
         maxLife: 120,
         attack: 14,
         defense: 6,
-        icon: 'url(img/big-monster.png)'
+        icon: 'url(img/big-monster.png)',
+        wallpaper: 'url(img/wallpaper-3.jpg)'
     }
 }
 
@@ -80,6 +83,8 @@ const stage = {
     update() {
         this.fighter1El.querySelector('#charicon').style.backgroundImage = this.fighter1.icon
         this.fighter2El.querySelector('#monsicon').style.backgroundImage = this.fighter2.icon
+
+        document.querySelector('.bgimage').style.backgroundImage = this.fighter2.wallpaper
 
         let f1pct
         let f2pct
