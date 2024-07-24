@@ -7,14 +7,15 @@ const defaultCharacter = {
     bg: document.querySelector('.bgimage')
 }
 
-function createKnight(name) {
+function createKnight(name, i) {
     return {
         ...defaultCharacter,
         name,
         life: 100,
         maxLife: 100,
         attack: 12,
-        defense: 8,
+        defense: 8, 
+        icon: i       
     }
 }
 
@@ -26,6 +27,7 @@ function createSorcerer() {
         maxLife: 50,
         attack: 14,
         defense: 5,
+        icon: 'url(img/sorcerer.png)'
     }
 }
 
@@ -37,6 +39,7 @@ function createLittleMonster() {
         maxLife: 40,
         attack: 8,
         defense: 4,
+        icon: 'url(img/small-monster.png)'
     }
 }
 
@@ -48,6 +51,7 @@ function createBigMonster() {
         maxLife: 120,
         attack: 14,
         defense: 6,
+        icon: 'url(img/big-monster.png)'
     }
 }
 
@@ -74,6 +78,9 @@ const stage = {
 
     }, 
     update() {
+        this.fighter1El.querySelector('#charicon').style.backgroundImage = this.fighter1.icon
+        this.fighter2El.querySelector('#monsicon').style.backgroundImage = this.fighter2.icon
+
         let f1pct
         let f2pct
         let bar1 = this.fighter1El.querySelector('.bar')
@@ -128,10 +135,6 @@ const stage = {
         let monsterAttack = monster.attack * (Math.random() * 2).toFixed(2)
         let charDefense = char.defense * (Math.random() * 2).toFixed(2)
         let charAttack = char.attack * (Math.random() * 2).toFixed(2)
-        console.log('monster defense ' + monsterDefense)
-        console.log('monster Attack ' + monsterAttack)
-        console.log('char Defense ' + charDefense)
-        console.log('char Attack ' + charAttack)
 
         let log = document.getElementById('log')
         const node = document.createElement('li')
@@ -173,19 +176,46 @@ const stage = {
 }
 
 function getPlayerName(callback) {
-    let elements = document.querySelectorAll('.newplayer')
-        elements[0].style.display = 'block'
-        elements[1].style.display = 'block'
+    let blurr = document.querySelector('#blurr')
+    let container = document.querySelector('#newchar')
 
-    let form = document.querySelector('form')
-    form[1].addEventListener('click', (e) => {
+    blurr.style.display = 'block'
+    container.style.display = 'block'
+
+    document.querySelectorAll('.options').forEach(option => {
+        option.addEventListener('change', (event) => {
+            document.querySelectorAll('.options-container').forEach(label => {
+                label.style.outline = 'none'
+            })
+            if (event.target.checked) {
+                event.target.parentElement.style.outline = '3px solid white'
+            }
+        })
+    })    
+
+    const form = document.querySelector('#form')
+    
+    form.addEventListener('submit', (e) => {
         e.preventDefault()
 
-        let text = form[0].value
-        elements[0].style.display = 'none'
-        elements[1].style.display = 'none'
-        callback(text)
-    })
+        let name = document.querySelector("#inputname").value
+        let gender = document.querySelectorAll(".options")
+
+        if (gender[0].checked == true) {
+            gender = 'man'
+        } else {
+            gender = 'woman'
+        }
+
+        let character = {name, gender}
+
+        blurr.style.display = 'none'
+        container.style.display = 'none'
+        
+        callback(character)
+    }
+
+)
 }
 
 function defeat() {

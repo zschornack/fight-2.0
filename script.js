@@ -1,7 +1,14 @@
-getPlayerName((name) => {
-    playername = name
+getPlayerName((character) => {
+    let playername = character.name
+    let gender = character.gender
 
-const char = createKnight(name)
+    if (gender == 'man') {
+        icon = 'url(img/man.png)'
+    } else {
+        icon = 'url(img/girl.png)'
+    }
+
+const char = createKnight(playername, icon)
 const monster = createLittleMonster()
 
 stage.start(
